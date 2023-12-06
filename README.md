@@ -1,8 +1,8 @@
 # Captain Whisker
 
-Captain Whisker leverages Handlebars to make JSON templating easy in Node.js.  Coming from rails, I really missed
+Captain Whisker leverages Handlebars to make JSON templating easy in Node.js. Coming from rails, I really missed
 [Jbuilder](https://github.com/rails/jbuilder), and the existing similar solutions in Node.js were either abandoned or
-not quite what I wanted.  It's probably overly simple and naive right now, but it works surprisingly well.
+not quite what I wanted. It's probably overly simple and naive right now, but it works surprisingly well.
 
 Here is a simple example:
 
@@ -20,8 +20,8 @@ Here is a simple example:
 const CaptainWhisker = require('captain-whisker');
 CaptainWhisker.initialize('./src');
 CaptainWhisker.build(
-  'view.hbs', 
-  { 
+  'view.hbs',
+  {
     users: [
       {
         id: 1,
@@ -68,15 +68,15 @@ Would produce a JSON structure like this:
 ## Finding template files
 
 Calling `CaptainWhisker.initialize('./root')` will search your source directory and all subdirectories for files with an
-`.hbs` extension.  This shold be done once per process; CaptainWhisker will store store the precompiled templates so
-they don't need to be compiled with every use.  Any `.hbs` files it finds that don't start with `_` will be compiled and
-registered as templates, usable with `CaptainWhisker.build('path/relative/to/root.hbs', context)`.  
+`.hbs` extension. This should be done once per process; CaptainWhisker will store store the precompiled templates so
+they don't need to be compiled with every use. Any `.hbs` files it finds that don't start with `_` will be compiled and
+registered as templates, usable with `CaptainWhisker.build('path/relative/to/root.hbs', context)`.
 
 Any files that have names beginning with an underscore will be considered partials.
 
 ## Partials support
 
-CaptainWhisker supports partials, so you can reuse pieces of templates across your views.  For example:
+CaptainWhisker supports partials, so you can reuse pieces of templates across your views. For example:
 
 ```
 // _user.hbs
@@ -97,3 +97,30 @@ CaptainWhisker supports partials, so you can reuse pieces of templates across yo
 
 For details on passing partial contexts and parameter, see the [Handlebars](http://handlebarsjs.com/partials.html)
 documentation.
+
+## Development/running locally
+
+### Requirements
+
+- Node.js (matching `.nvmrc`)
+- nvm (optional - for automatically setting node version to match `.nvmrc`)
+
+If you want to run the tests locally, install the node version corresponding to
+the version in `.nvmrc`. If you have `nvm` installed, run:
+
+```
+$ nvm install
+```
+
+Once you have node installed, you can install the required packages for
+development:
+
+```
+$ npm install
+```
+
+Then you can run the tests:
+
+```
+$ npm test
+```
